@@ -1,0 +1,36 @@
+<table border="solid">
+    <tr><th>Regd_id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Role</th>
+        <th>Address</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for user in data %}
+    <form method="post">
+        {% csrf_token %}
+    <tr>
+        <td>{{user.Reg_id}}</td>
+        <td>{{user.Name}}</td>
+        <td>{{user.Email}}</td>
+        <td>{{user.Mobile}}</td>
+        <td>{{user.Gender}}</td>
+        <td>{{user.DOB}}</td>
+        <td>{{user.Role_Name}}</td>
+        <td>{{user.Address}}</td>
+        <td>{{user.status}}</td>
+        <td>
+            <input type="text" name="email" value="{{user.Email}}"  hidden>
+            <input type="submit" name="btn" value="edit">
+            <input type="submit" name="btn" value="delete">
+            <input type="submit" value="billgenerate" name="btn">
+        </td>
+    </tr>
+    </form>
+    {% endfor  %}
+
+</table>

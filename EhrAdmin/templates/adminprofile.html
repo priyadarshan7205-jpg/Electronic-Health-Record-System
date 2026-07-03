@@ -1,0 +1,14 @@
+<form method="post" enctype="multipart/form-data" action="{% url 'adminprofile' %}">
+    {% csrf_token %} 
+    name  <input type="text" name="name" value="{{adata.Name}}"> <br>
+    email <input type="email" name="email" value="{{adata.Email}}"> <br>
+    mobile <input type="text" name="mobile" value="{{adata.Mobile}}"> <br>
+    password<input type="text" name="pwd" value="{{adata.Password}}"> <br>
+    address <input type="text" name="ads" value="{{adata.Address}}"> <br>
+    dob <input type="text" name="dob" value="{{adata.DOB |date:"Y-m-d"}}"> <br>
+    gender <input type="text" name="gender" value="{{adata.Gender}}"> <br>
+    Image <input type="file" name="image" > <br>
+    document <input type="file" name="uploaded_doc"> <br>
+    <input type="submit" value="Update" name="btn">
+
+</form>

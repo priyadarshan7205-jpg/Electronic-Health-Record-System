@@ -1,0 +1,54 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container my-5">
+  <div class="card shadow-lg rounded-4 border-0">
+    <div class="card-header bg-primary text-white text-center rounded-top-4">
+      <h4 class="mb-0">Patient Profile</h4>
+    </div>
+    <div class="card-body p-4">
+      <div class="text-center mb-4">
+        <img src="{{data1.Image.url}}" alt="Profile Picture" class="rounded-circle shadow" width="120" height="120">
+      </div>
+      <table class="table table-borderless align-middle">
+        <tbody>
+          <tr>
+            <th class="text-muted">Name</th>
+            <td>{{data.Name}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Email</th>
+            <td>{{data.Eamil}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Password</th>
+            <td>{{data.Password}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Gender</th>
+            <td>{{data.Gender}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">DOB</th>
+            <td>{{data.DOB}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Mobile</th>
+            <td>{{data.Mobile}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Address</th>
+            <td>{{data.Address}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Role</th>
+            <td>{{data.Role_Name}}</td>
+          </tr>
+          <tr>
+            <th class="text-muted">Document</th>
+            <td><a href="{{data1.Document.url}}" class="btn btn-sm btn-outline-primary">Download</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

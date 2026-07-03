@@ -1,0 +1,138 @@
+{% extends 'layout/base.html' %}
+{% block homeblock %}
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(-45deg, #667eea, #764ba2, #43cea2, #185a9d);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+  }
+
+  @keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  .login-card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    color: white;
+  }
+
+  .form-control {
+    border-radius: 10px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+  }
+
+  .btn-custom {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .btn-custom:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ff5f6d, #ffc371);
+  }
+
+  .title {
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  .toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 38px;
+  }
+
+  .footer-text {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .footer-text a {
+    color: #fff;
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="login-card p-4" style="max-width: 420px; width: 100%;">
+
+    <h3 class="title mb-4">🏥 EHR System Login</h3>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label>📧 Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+      </div>
+
+      <!-- Password -->
+      <div class="mb-3 position-relative">
+        <label>🔒 Password</label>
+        <input type="password" id="password" name="pwd" class="form-control" placeholder="Enter password" required>
+        <span class="toggle-password" onclick="togglePassword()">👁</span>
+      </div>
+
+      <!-- Remember Me -->
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="remember">
+        <label class="form-check-label">Remember me</label>
+      </div>
+
+      <!-- Button -->
+      <button type="submit" name="btn" value="Login" class="btn btn-custom w-100">
+        🚀 Login
+      </button>
+
+    </form>
+
+    <!-- Error Message -->
+    {% if msg %}
+    <div class="alert alert-danger mt-3 text-center">
+      {{ msg }}
+    </div>
+    {% endif %}
+
+    <!-- Extra Links -->
+    <div class="footer-text">
+      <p><a href="#"></a></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function togglePassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+</script>
+
+{% endblock %}

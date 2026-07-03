@@ -1,0 +1,301 @@
+<style>
+    /* Enhanced Table Styling - Medical Theme */
+    body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    /* Table Container */
+    .table-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    /* Table Header */
+    th {
+        background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+        color: white;
+        padding: 15px 12px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border: none;
+        position: relative;
+    }
+
+    th::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Table Cells */
+    td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e5e7eb;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #374151;
+    }
+
+    /* Row Hover Effects */
+    tr:hover {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        transform: scale(1.01);
+        transition: all 0.2s ease;
+    }
+
+    /* Alternating Row Colors */
+    tr:nth-child(even) {
+        background: #f9fafb;
+    }
+
+    tr:nth-child(even):hover {
+        background: #f3f4f6;
+    }
+
+    /* Status Column Styling */
+    td:nth-child(8) {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+    }
+
+    /* Status Colors */
+    td:nth-child(8):contains("Pending") {
+        color: #d97706;
+    }
+
+    td:nth-child(8):contains("Approved") {
+        color: #059669;
+    }
+
+    td:nth-child(8):contains("Cancelled") {
+        color: #dc2626;
+    }
+
+    /* Button Styling */
+    .btn-approve {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-right: 8px;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+    }
+
+    .btn-approve:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+
+    .btn-cancel {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(239, 68, 68, 0.2);
+    }
+
+    .btn-cancel:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    }
+
+    /* View Details Button */
+    input[type="submit"][value="ViewDetails"] {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+    }
+
+    input[type="submit"][value="ViewDetails"]:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    }
+
+    /* Message Styling */
+    .message {
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        border-left: 4px solid;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .message.success {
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        color: #065f46;
+        border-left-color: #10b981;
+    }
+
+    .message.error {
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        color: #991b1b;
+        border-left-color: #ef4444;
+    }
+
+    /* No Appointments Message */
+    p {
+        text-align: center;
+        padding: 40px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        color: #6b7280;
+        font-size: 16px;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
+        th, td {
+            padding: 8px 10px;
+            font-size: 12px;
+        }
+
+        .btn-approve, .btn-cancel, input[type="submit"] {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        th {
+            padding: 12px 8px;
+            font-size: 12px;
+        }
+    }
+
+    /* Loading Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    table {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+
+<div class="table-container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message {% if message.tags == 'success' %}success{% else %}error{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if appointments %}
+        <table border="solid">
+            <tr>
+                <th>Patient Name</th>
+                <th>Contact</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>Disease</th>
+                <th>Apply Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>View</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.p_name }}</td>
+                <td>{{ appointment.p_mobile }}</td>
+                <td>{{ appointment.p_address }}</td>
+                <td>{{ appointment.p_gender }}</td>
+             
+                <td>{{ appointment.p_disease }}</td>
+                <td>{{ appointment.todaydate }}</td>
+                <td>{{ appointment.fromTime }} - {{ appointment.totime }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    {% if appointment.status == "Pending" %}
+                        <form action="{% url 'approve_appointment' %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                            <button type="submit" class="btn-approve">Approve</button>
+                        </form>
+                        <form action="{% url 'cancel_appointment' %}" method="POST" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                            <button type="submit" class="btn-cancel">Cancel</button>
+                        </form>
+                    {% else %}
+                    <form action="{% url 'cancel_appointment' %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                        <button type="submit" class="btn-cancel">Cancel</button>
+                    </form>
+                    {% endif %}
+                </td>
+                <td>
+                   
+                    <form method="post" action="{% url 'viewdetails' %}">
+                        {% csrf_token %}
+                        
+                        <input type="hidden"  value="{{appointment.id}}" name="pid">
+                    <input type="submit" value="ViewDetails" name="btn">
+                       
+                    </form>
+                
+                    </td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No appointments found for you.</p>
+    {% endif %}
+</div>
+</body>
+</html>

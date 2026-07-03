@@ -1,0 +1,167 @@
+{% extends 'alayout/base.html' %}
+{% block adminblock %}
+
+<style>
+    body {
+        background: #f1f5f9;
+    }
+
+    .dashboard {
+        padding: 20px;
+    }
+
+    .welcome {
+        background: white;
+        border-radius: 20px;
+        padding: 25px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .card-box {
+        border-radius: 20px;
+        padding: 20px;
+        color: white;
+        transition: 0.3s;
+    }
+
+    .card-box:hover {
+        transform: translateY(-6px);
+    }
+
+    .blue { background: linear-gradient(135deg,#2563eb,#1d4ed8); }
+    .green { background: linear-gradient(135deg,#10b981,#059669); }
+    .orange { background: linear-gradient(135deg,#f59e0b,#d97706); }
+    .red { background: linear-gradient(135deg,#ef4444,#dc2626); }
+
+    .section {
+        background: white;
+        border-radius: 20px;
+        padding: 20px;
+        margin-top: 25px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .btn-custom {
+        border-radius: 12px;
+        font-weight: 600;
+        padding: 10px;
+    }
+</style>
+
+<div class="container dashboard">
+
+    <!-- Welcome -->
+    <div class="welcome mb-4">
+        <h2>Welcome, Admin 👋</h2>
+        <p class="text-muted">Manage your Electronic Health Record System easily.</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card-box blue">
+                <h5>Total Patients</h5>
+                <h2>1,250</h2>
+                <small>+15 today</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box green">
+                <h5>Doctors</h5>
+                <h2>85</h2>
+                <small>Active staff</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box orange">
+                <h5>Appointments</h5>
+                <h2>320</h2>
+                <small>Today’s bookings</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card-box red">
+                <h5>Emergency Cases</h5>
+                <h2>7</h2>
+                <small>Critical alerts</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="section">
+        <h4 class="mb-3">Quick Actions</h4>
+
+        <div class="row g-3">
+            <div class="col-md-3">
+                <button class="btn btn-primary w-100 btn-custom">➕ Add Patient</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success w-100 btn-custom">🩺 Add Doctor</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-warning w-100 btn-custom">📅 Book Appointment</button>
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-danger w-100 btn-custom">🚨 Emergency</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="section">
+        <h4 class="mb-3">Recent Activity</h4>
+
+        <ul class="list-group">
+            <li class="list-group-item">✅ Patient "Rahul Kumar" registered</li>
+            <li class="list-group-item">📅 Appointment booked for "Dr. Sharma"</li>
+            <li class="list-group-item">🩺 New doctor added: "Dr. Priya"</li>
+            <li class="list-group-item">⚠ Emergency case reported in ICU</li>
+            <li class="list-group-item">💊 Prescription updated for patient</li>
+        </ul>
+    </div>
+
+    <!-- Table Section -->
+    <div class="section">
+        <h4 class="mb-3">Recent Patients</h4>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Doctor</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rahul Kumar</td>
+                    <td>32</td>
+                    <td>Dr. Sharma</td>
+                    <td><span class="badge bg-success">Stable</span></td>
+                </tr>
+                <tr>
+                    <td>Anita Das</td>
+                    <td>45</td>
+                    <td>Dr. Priya</td>
+                    <td><span class="badge bg-warning">Under Treatment</span></td>
+                </tr>
+                <tr>
+                    <td>Ramesh Patel</td>
+                    <td>60</td>
+                    <td>Dr. Verma</td>
+                    <td><span class="badge bg-danger">Critical</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}

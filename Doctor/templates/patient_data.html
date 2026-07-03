@@ -1,0 +1,255 @@
+<style>
+    /* Enhanced Patient Data Table Styling */
+    body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    /* Table Container */
+    .patient-table-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin: 20px auto;
+        max-width: 1400px;
+        position: relative;
+    }
+
+    .patient-table-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #06b6d4, #0891b2, #0e7490);
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        margin: 0;
+    }
+
+    /* Table Header */
+    th {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 18px 15px;
+        text-align: left;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border: none;
+        position: relative;
+    }
+
+    th:first-child {
+        border-top-left-radius: 15px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 15px;
+    }
+
+    /* Table Header Icons */
+    th:before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Table Cells */
+    td {
+        padding: 15px 18px;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.2s ease;
+    }
+
+    /* Row Hover Effects */
+    tr:hover {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        transform: scale(1.005);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Alternating Row Colors */
+    tr:nth-child(even) {
+        background: #f9fafb;
+    }
+
+    tr:nth-child(even):hover {
+        background: #f3f4f6;
+    }
+
+    /* First and Last Row Styling */
+    tr:first-child:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Data Type Specific Styling */
+    td:nth-child(1) {
+        font-weight: 600;
+        color: #1e40af;
+        font-family: 'Courier New', monospace;
+    }
+
+    td:nth-child(2) {
+        font-weight: 600;
+        color: #059669;
+    }
+
+    td:nth-child(3) {
+        color: #7c3aed;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+    }
+
+    td:nth-child(4) {
+        font-weight: 500;
+        color: #dc2626;
+        font-family: 'Courier New', monospace;
+    }
+
+    td:nth-child(5) {
+        font-weight: 500;
+        color: #ea580c;
+        text-transform: capitalize;
+    }
+
+    td:nth-child(6) {
+        color: #0891b2;
+        font-family: 'Courier New', monospace;
+    }
+
+    td:nth-child(7) {
+        color: #6b7280;
+        line-height: 1.4;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        body {
+            padding: 15px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            font-size: 13px;
+        }
+
+        th {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
+        .patient-table-container {
+            border-radius: 10px;
+        }
+
+        th, td {
+            padding: 8px 6px;
+            font-size: 12px;
+        }
+
+        th {
+            padding: 12px 6px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Mobile table scrolling */
+        .patient-table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            min-width: 800px;
+        }
+    }
+
+    /* Loading Animation */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .patient-table-container {
+        animation: slideIn 0.6s ease-out;
+    }
+
+    /* Focus States */
+    td:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: -2px;
+    }
+
+    /* Print Styles */
+    @media print {
+        body {
+            background: white !important;
+        }
+
+        .patient-table-container {
+            box-shadow: none !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        th {
+            background: #f3f4f6 !important;
+            color: #111827 !important;
+            -webkit-print-color-adjust: exact;
+        }
+    }
+</style>
+
+<div class="patient-table-container">
+<table border="solid">
+    <tr><th>Regd_id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Gender</th>
+        <th>DOB</th>
+        <th>Address</th>
+    </tr>
+    {% for user in data %}
+    <tr>
+        <td>{{user.Reg_id}}</td>
+        <td>{{user.Name}}</td>
+        <td>{{user.Email}}</td>
+        <td>{{user.Mobile}}</td>
+        <td>{{user.Gender}}</td>
+        <td>{{user.DOB}}</td>
+        <td>{{user.Address}}</td>
+    </tr>
+    {% endfor  %}
+
+</table>
+</div>

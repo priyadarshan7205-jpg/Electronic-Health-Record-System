@@ -1,0 +1,19 @@
+<div class="card shadow p-4">
+    <h3>Patient Details</h3>
+    <p><strong>Name:</strong> {{ pdata.p_name }}</p>
+    <p><strong>Contact:</strong> {{ pdata.p_mobile }}</p>
+    <p><strong>Gender:</strong> {{ pdata.p_gender }}</p>
+    <p><strong>Disease:</strong> {{ pdata.p_disease }}</p>
+    <hr>
+
+    <h4>Add Prescription</h4>
+    <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="pid" value="{{ pdata.id }}">
+        
+        <label for="prescription" class="form-label">Prescription</label>
+        <textarea name="prescription" id="prescription" rows="4" class="form-control"></textarea>
+        
+        <button type="submit" name="btn" value="submit" class="btn btn-primary mt-3">Save Prescription</button>
+    </form>
+</div>
