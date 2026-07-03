@@ -1,0 +1,90 @@
+{% extends "playout/base.html" %}
+{% block patientblock %}
+<style>
+  .profile-card {
+    max-width: 800px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+  }
+  .profile-image {
+    flex: 1;
+    text-align: center;
+  }
+  .profile-image img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #4a4a9c;
+  }
+  .profile-details {
+    flex: 2;
+  }
+  .profile-details h2 {
+    color: #4a4a9c;
+    margin-bottom: 15px;
+  }
+  .profile-details table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .profile-details th {
+    text-align: left;
+    padding: 8px;
+    color: #333;
+    width: 150px;
+  }
+  .profile-details td {
+    padding: 8px;
+    color: #555;
+  }
+  .doc-link {
+    color: #4a4a9c;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  .doc-link:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<div class="profile-card">
+  <!-- Profile Image -->
+  <div class="profile-image">
+    {% if pdata.Image %}
+      <img src="{{ pdata.Image.url }}" alt="Profile Picture">
+    {% else %}
+      <img src="https://via.placeholder.com/180" alt="No Image">
+    {% endif %}
+  </div>
+
+  <!-- Profile Details -->
+  <div class="profile-details">
+    <h2>{{ pdata.Name }}</h2>
+    <table>
+      <tr><th>Email:</th><td>{{ pdata.Email }}</td></tr>
+      <tr><th>Mobile:</th><td>{{ pdata.Mobile }}</td></tr>
+      <tr><th>Gender:</th><td>{{ pdata.Gender }}</td></tr>
+      <tr><th>Date of Birth:</th><td>{{ pdata.DOB|date:"Y-m-d" }}</td></tr>
+      <tr><th>Address:</th><td>{{ pdata.Address }}</td></tr>
+      <tr><th>Role:</th><td>{{ pdata.Role_name }}</td></tr>
+      <tr>
+        <th>Document:</th>
+        <td>
+          {% if pdata.Document %}
+            <a href="{{ pdata.Document.url }}" target="_blank" class="doc-link">View Document</a>
+          {% else %}
+            No document uploaded
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,304 @@
+<style>
+    /* Apply Test Table Styling */
+    body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    /* Table Container */
+    .test-table-container {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        margin: 20px auto;
+        max-width: 1400px;
+        position: relative;
+    }
+
+    .test-table-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #0891b2, #06b6d4, #0e7490);
+    }
+
+    /* Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        margin: 0;
+    }
+
+    /* Table Header */
+    th {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        padding: 18px 15px;
+        text-align: left;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        border: none;
+        position: relative;
+    }
+
+    th:first-child {
+        border-top-left-radius: 15px;
+    }
+
+    th:last-child {
+        border-top-right-radius: 15px;
+    }
+
+    /* Table Header Bottom Border */
+    th::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Table Cells */
+    td {
+        padding: 15px 18px;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: middle;
+        font-size: 14px;
+        color: #374151;
+        transition: all 0.2s ease;
+    }
+
+    /* Row Hover Effects */
+    tr:hover {
+        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        transform: scale(1.005);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Alternating Row Colors */
+    tr:nth-child(even) {
+        background: #f9fafb;
+    }
+
+    tr:nth-child(even):hover {
+        background: #f3f4f6;
+    }
+
+    /* Report ID Column */
+    td:nth-child(1) {
+        font-weight: 600;
+        color: #1e40af;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+    }
+
+    /* Patient Name Column */
+    td:nth-child(2) {
+        font-weight: 600;
+        color: #059669;
+    }
+
+    /* Tests Column */
+    td:nth-child(3) {
+        color: #0891b2;
+    }
+
+    td:nth-child(3) ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    td:nth-child(3) li {
+        padding: 4px 0;
+        border-bottom: 1px solid #e5e7eb;
+        font-size: 13px;
+    }
+
+    td:nth-child(3) li:last-child {
+        border-bottom: none;
+    }
+
+    td:nth-child(3) li::before {
+        content: '✓ ';
+        color: #10b981;
+        font-weight: bold;
+        margin-right: 4px;
+    }
+
+    /* Total Price Column */
+    td:nth-child(4) {
+        font-weight: 700;
+        color: #dc2626;
+        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+        padding: 15px 18px;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    /* Date & Time Column */
+    td:nth-child(5) {
+        color: #7c3aed;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+    }
+
+    /* Badge Styling for Price */
+    td:nth-child(4)::before {
+        content: '₹ ';
+        font-weight: bold;
+    }
+
+    /* Focus States */
+    tr:focus {
+        outline: 2px solid #0891b2;
+        outline-offset: -2px;
+    }
+
+    /* Empty State */
+    tr:only-child td {
+        text-align: center;
+        padding: 40px;
+        color: #9ca3af;
+    }
+
+    /* Table Responsive Design */
+    @media (max-width: 1024px) {
+        body {
+            padding: 15px;
+        }
+
+        th, td {
+            padding: 12px 10px;
+            font-size: 13px;
+        }
+
+        th {
+            font-size: 12px;
+        }
+
+        td:nth-child(3) li {
+            font-size: 12px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        body {
+            padding: 10px;
+        }
+
+        .test-table-container {
+            border-radius: 10px;
+            margin: 10px auto;
+        }
+
+        th, td {
+            padding: 8px 6px;
+            font-size: 12px;
+        }
+
+        th {
+            padding: 12px 6px;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+        }
+
+        td:nth-child(4) {
+            font-size: 13px;
+        }
+
+        td:nth-child(3) li {
+            font-size: 11px;
+            padding: 3px 0;
+        }
+
+        /* Mobile table scrolling */
+        .test-table-container {
+            overflow-x: auto;
+        }
+
+        table {
+            min-width: 800px;
+        }
+    }
+
+    /* Loading Animation */
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .test-table-container {
+        animation: slideIn 0.6s ease-out;
+    }
+
+    /* Print Styles */
+    @media print {
+        body {
+            background: white !important;
+        }
+
+        .test-table-container {
+            box-shadow: none !important;
+            border: 1px solid #e5e7eb !important;
+        }
+
+        th {
+            background: #f3f4f6 !important;
+            color: #111827 !important;
+            -webkit-print-color-adjust: exact;
+        }
+
+        tr:hover {
+            background: white !important;
+            transform: none !important;
+        }
+    }
+</style>
+
+<div class="test-table-container">
+<table border="1">
+    <tr>
+        <th>Report ID</th>
+        <th>Patient</th>
+        <th>Tests</th>
+        <th>Total Price</th>
+        <th>Date & Time</th>
+    </tr>
+    {% for report in rdata %}
+    <tr>
+        <td>{{ report.report_id }}</td>
+        <td>{{ report.patient.Name }}</td>
+        <td>
+            <ul>
+                {% for test in report.tests.all %}
+                    <li>{{ test.test_name }} (₹{{ test.test_Price }})</li>
+                {% empty %}
+                    <li>No tests</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>₹{{ report.total_price }}</td>
+        <td>{{ report.created_at|date:"d M Y H:i" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>

@@ -1,0 +1,366 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block homeblock %}
+<!-- 1. CUSTOM UI/UX STYLING -->
+<style>
+    :root {
+        --primary-med: #0d6efd;
+        --accent-cyan: #0dcaf0;
+        --dark-surface: #0f172a;
+        --glass-white: rgba(255, 255, 255, 0.85);
+        --curve: 24px;
+    }
+
+    /* Professional Typography */
+    body {
+        font-family: 'Plus Jakarta Sans', 'Lato', sans-serif;
+        background-color: #fcfdfe;
+        overflow-x: hidden;
+    }
+
+    /* Hero Section with Animated Mesh Gradient */
+    .hero-section {
+        position: relative;
+        padding: 160px 0 100px;
+        background: radial-gradient(at 0% 0%, rgba(13, 110, 253, 0.15) 0, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(13, 202, 240, 0.15) 0, transparent 50%);
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Floating Image Card */
+    .hero-mockup {
+        border-radius: var(--curve);
+        box-shadow: 0 30px 60px -12px rgba(15, 23, 42, 0.15);
+        transition: transform 0.5s ease;
+    }
+    .hero-mockup:hover {
+        transform: translateY(-10px) rotate(-1deg);
+    }
+
+    /* Glassmorphism Feature Cards */
+    .feature-card {
+        background: var(--glass-white);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        border-radius: var(--curve);
+        padding: 40px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        height: 100%;
+    }
+
+    .feature-card:hover {
+        background: white;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        border-color: var(--primary-med);
+    }
+
+    .icon-circle {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, var(--primary-med), var(--accent-cyan));
+        color: white;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        margin-bottom: 24px;
+        box-shadow: 0 8px 16px rgba(13, 110, 253, 0.2);
+    }
+
+    /* Curved Showcase Sections */
+    .showcase-container {
+        border-radius: 40px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.03);
+    }
+
+    /* Animations */
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .btn-med {
+        padding: 12px 32px;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s;
+    }
+    .btn-med:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(13, 110, 253, 0.2);
+    }
+
+    /* Video Player Styles */
+    .video-player-container {
+        overflow: hidden;
+        border-radius: 0 0 var(--curve) var(--curve);
+    }
+
+    .video-controls {
+        background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        backdrop-filter: blur(8px);
+        border-radius: 0 0 var(--curve) var(--curve);
+        transition: opacity 0.3s ease;
+    }
+
+    .video-player-container:hover .video-controls {
+        opacity: 1 !important;
+    }
+
+    .bg-gradient-dark {
+        background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.9) 100%);
+    }
+</style>
+
+<!-- 2. HERO SECTION -->
+<header class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6 reveal">
+                <span class="badge bg-soft-primary text-primary px-3 py-2 rounded-pill mb-3 fw-bold">NEXT-GEN EHR SOLUTION</span>
+                <h1 class="display-3 fw-bold mb-4" style="color: var(--dark-surface); letter-spacing: -1px;">
+                    Digitizing <span class="text-primary">Patient</span> Care at Scale.
+                </h1>
+                <p class="lead text-muted mb-5 fs-4">
+                    A secure, cloud-native Electronic Health Record system built for the modern clinical workflow.
+                </p>
+                <div class="d-flex flex-column flex-sm-row gap-3">
+                    <a href="#signup" class="btn btn-primary btn-med btn-lg shadow">Launch Dashboard</a>
+                    <a href="#" class="btn btn-outline-dark btn-med btn-lg" data-bs-toggle="modal" data-bs-target="#demoVideoModal">
+                        <i class="bi bi-play-circle-fill me-2"></i>Watch Health Demo Video
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6 reveal">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1200" 
+                     class="img-fluid hero-mockup" alt="Modern Medical Dashboard">
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Video Modal -->
+<div class="modal fade" id="demoVideoModal" tabindex="-1" aria-labelledby="demoVideoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header bg-primary text-white rounded-top">
+                <h5 class="modal-title" id="demoVideoModalLabel">
+                    <i class="bi bi-play-circle-fill me-2"></i>Health Platform Demo Video
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="video-player-container position-relative">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="demoVideoIframe"
+                                src="https://www.youtube.com/embed/ssQh3Ro4_qI?rel=0&showinfo=0&modestbranding=1&autoplay=0"
+                                title="Healthcare Technology Demo - Modern EHR System"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                                loading="lazy">
+                        </iframe>
+                    </div>
+                    <!-- Video Player Controls Overlay -->
+                    <div class="video-controls position-absolute bottom-0 start-0 w-100 p-3 bg-gradient-dark">
+                        <div class="d-flex justify-content-between align-items-center text-white">
+                            <div class="video-info">
+                                <small class="opacity-75">Healthcare Technology Overview</small>
+                            </div>
+                            <div class="video-actions">
+                                <a href="https://www.youtube.com/watch?v=ssQh3Ro4_qI"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="btn btn-sm btn-outline-light me-2">
+                                    <i class="bi bi-box-arrow-up-right me-1"></i>Watch on YouTube
+                                </a>
+                                <button class="btn btn-sm btn-light" onclick="toggleFullscreen()">
+                                    <i class="bi bi-fullscreen"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Video Description -->
+                <div class="p-4 bg-light">
+                    <h6 class="fw-bold text-primary mb-3">
+                        <i class="bi bi-info-circle-fill me-2"></i>About This Demo
+                    </h6>
+                    <p class="mb-3">This comprehensive healthcare technology demonstration showcases our modern Electronic Health Record (EHR) system, featuring patient management, secure data handling, and advanced clinical workflows.</p>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="bi bi-shield-check text-success fs-3 mb-2"></i>
+                                <div class="small text-muted">HIPAA Compliant</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="bi bi-lightning-charge text-warning fs-3 mb-2"></i>
+                                <div class="small text-muted">Real-time Sync</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="bi bi-graph-up text-primary fs-3 mb-2"></i>
+                                <div class="small text-muted">AI-Powered</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 3. FEATURE GRID -->
+<section class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5 reveal">
+            <h2 class="fw-bold display-5">Engineered for Reliability</h2>
+            <p class="text-muted fs-5">Trusted by 500+ clinics to manage mission-critical data.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 reveal">
+                <div class="feature-card">
+                    <div class="icon-circle"><i class="bi bi-shield-lock-fill"></i></div>
+                    <h4 class="fw-bold">HIPAA Secure</h4>
+                    <p class="text-muted mb-0">End-to-end encryption for every patient record, meeting global regulatory standards.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal">
+                <div class="feature-card">
+                    <div class="icon-circle"><i class="bi bi-lightning-fill"></i></div>
+                    <h4 class="fw-bold">Real-time Sync</h4>
+                    <p class="text-muted mb-0">Instantly share lab results and vital signs across pharmacy and lab departments.</p>
+                </div>
+            </div>
+            <div class="col-md-4 reveal">
+                <div class="feature-card">
+                    <div class="icon-circle"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h4 class="fw-bold">AI Diagnostics</h4>
+                    <p class="text-muted mb-0">Smart pattern recognition to help physicians spot medical trends faster.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. SHOWCASE WITH IMAGE -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="showcase-container reveal">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1530497610245-94d3c16cda28?auto=format&fit=crop&q=80&w=1000" 
+                         class="img-fluid" alt="Medical Technology" style="max-height: 500px; width: 100%; object-fit: cover;">
+                </div>
+                <div class="col-lg-6 p-5">
+                    <h2 class="fw-bold mb-4">Patient-Centric Portal</h2>
+                    <p class="lead text-muted mb-4">Give your patients access to their history, medication schedules, and telehealth appointments through one unified interface.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Automated SMS Reminders</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Secure Document Upload</li>
+                        <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Instant Prescription Renewals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 5. CALL TO ACTION -->
+<section class="py-5 text-center" id="signup">
+    <div class="container py-5 reveal">
+        <div class="card border-0 bg-dark text-white p-5 rounded-5 shadow-lg">
+            <div class="card-body">
+                <h2 class="display-5 fw-bold mb-3">Join the Future of Healthcare</h2>
+                <p class="lead mb-5 opacity-75">Ready to modernize your medical practice? Start your 30-day free trial.</p>
+                <form class="row justify-content-center g-2">
+                    <div class="col-md-5">
+                        <input type="email" class="form-control form-control-lg border-0 rounded-pill px-4" placeholder="Enter clinic email...">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary btn-lg rounded-pill px-5">Get Started</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 6. JS FOR ANIMATIONS -->
+<script>
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
+
+    // Video Player Functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        var demoVideoModal = document.getElementById('demoVideoModal');
+        var demoVideoIframe = document.getElementById('demoVideoIframe');
+
+        if (demoVideoModal && demoVideoIframe) {
+            // Reset video when modal closes
+            demoVideoModal.addEventListener('hidden.bs.modal', function () {
+                demoVideoIframe.src = demoVideoIframe.src;
+            });
+
+            // Show video controls on hover
+            var videoContainer = document.querySelector('.video-player-container');
+            if (videoContainer) {
+                videoContainer.addEventListener('mouseenter', function() {
+                    var controls = this.querySelector('.video-controls');
+                    if (controls) controls.style.opacity = '1';
+                });
+
+                videoContainer.addEventListener('mouseleave', function() {
+                    var controls = this.querySelector('.video-controls');
+                    if (controls) controls.style.opacity = '0.9';
+                });
+            }
+        }
+    });
+
+    // Fullscreen toggle function
+    function toggleFullscreen() {
+        var modal = document.getElementById('demoVideoModal');
+        if (!document.fullscreenElement) {
+            modal.requestFullscreen().catch(err => {
+                console.log(`Error attempting to enable fullscreen: ${err.message}`);
+            });
+        } else {
+            document.exitFullscreen();
+        }
+    }
+
+    // Handle fullscreen changes
+    document.addEventListener('fullscreenchange', function() {
+        var fullscreenBtn = document.querySelector('.video-controls .btn-light');
+        if (document.fullscreenElement) {
+            fullscreenBtn.innerHTML = '<i class="bi bi-fullscreen-exit"></i>';
+        } else {
+            fullscreenBtn.innerHTML = '<i class="bi bi-fullscreen"></i>';
+        }
+    });
+</script>
+
+{% endblock %}

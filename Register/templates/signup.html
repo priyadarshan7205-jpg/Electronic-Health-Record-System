@@ -1,0 +1,164 @@
+{% extends 'layout/base.html' %}
+{% block homeblock %}
+
+<style>
+/* (Your existing styles kept same) */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(-45deg, #667eea, #764ba2, #43cea2, #185a9d);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+}
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.signup-card {
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  color: white;
+}
+
+.form-control, .form-select, textarea {
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+  border: none;
+}
+
+.btn-register {
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+}
+
+.strength {
+  font-size: 13px;
+  margin-top: 5px;
+}
+</style>
+
+<div class="container d-flex justify-content-center align-items-center py-5">
+  <div class="signup-card p-4" style="max-width: 600px; width: 100%;">
+
+    <h3 class="text-center">🏥 Create EHR Account</h3>
+
+    <form method="post" onsubmit="return validateForm()">
+      {% csrf_token %}
+
+      <!-- Name -->
+      <input type="text" name="name" id="name" class="form-control mb-3" placeholder="Full Name" required>
+
+      <!-- Mobile -->
+      <input type="text" name="mobile" id="mobile" class="form-control mb-3" placeholder="Mobile" required>
+
+      <!-- Email + OTP -->
+      <div class="mb-3">
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
+        <button type="button" class="btn btn-sm btn-light mt-2" onclick="sendOTP()">Send OTP</button>
+      </div>
+
+      <input type="text" id="otp" class="form-control mb-3" placeholder="Enter OTP">
+
+      <!-- Password -->
+      <div class="mb-3 position-relative">
+        <input type="password" name="pwd" id="password" class="form-control" placeholder="Password" required>
+        <span onclick="togglePassword()" style="position:absolute; right:10px; top:10px; cursor:pointer;">👁</span>
+        <div id="strength" class="strength"></div>
+      </div>
+
+      <!-- DOB -->
+      <input type="date" name="dob" class="form-control mb-3" required>
+
+      <!-- Role -->
+      <select name="role" class="form-select mb-3" required>
+        <option value="">Select Role</option>
+        <option>EhrAdmin</option>
+        <option>Doctor</option>
+        <option>Patient</option>
+        <option>Staff</option>
+      </select>
+
+      <!-- Gender -->
+      <div class="mb-3">
+        <input type="radio" name="gender" value="male" required> Male
+        <input type="radio" name="gender" value="female" class="ms-3"> Female
+      </div>
+
+      <!-- Address -->
+      <textarea name="adds" class="form-control mb-3" placeholder="Address"></textarea>
+
+      <button type="submit" class="btn btn-register w-100">🚀 Register</button>
+
+    </form>
+
+    {% if MSG %}
+    <script>
+      alert("Registration Successful!");
+      window.location.href = "/login/";
+    </script>
+    {% endif %}
+
+  </div>
+</div>
+
+<script>
+/* 👁 Show/Hide Password */
+function togglePassword() {
+  let p = document.getElementById("password");
+  p.type = p.type === "password" ? "text" : "password";
+}
+
+/* 🔐 Password Strength */
+document.getElementById("password").addEventListener("input", function() {
+  let val = this.value;
+  let strength = document.getElementById("strength");
+
+  if (val.length < 6) {
+    strength.innerHTML = "Weak ❌";
+    strength.style.color = "red";
+  } else if (val.match(/[A-Z]/) && val.match(/[0-9]/)) {
+    strength.innerHTML = "Strong 💪";
+    strength.style.color = "lightgreen";
+  } else {
+    strength.innerHTML = "Medium ⚠️";
+    strength.style.color = "yellow";
+  }
+});
+
+/* 📧 OTP System (Demo) */
+let generatedOTP = "";
+
+function sendOTP() {
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  alert("Your OTP is: " + generatedOTP); // backend replace later
+}
+
+/* 🧠 Smart Validation */
+function validateForm() {
+  let mobile = document.getElementById("mobile").value;
+  let otp = document.getElementById("otp").value;
+
+  if (mobile.length != 10 || isNaN(mobile)) {
+    alert("Invalid mobile number");
+    return false;
+  }
+
+  if (otp != generatedOTP) {
+    alert("Invalid OTP");
+    return false;
+  }
+
+  return true;
+}
+</script>
+
+{% endblock %}

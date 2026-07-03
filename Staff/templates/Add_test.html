@@ -1,0 +1,262 @@
+{% extends "slayout/base.html" %}
+{% block staffblock %}
+
+<style>
+    /* Add Test Form Styling */
+    body {
+        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+    }
+
+    /* Form Container */
+    form {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 40px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    form::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #06b6d4, #0891b2, #0e7490);
+    }
+
+    /* Form Title */
+    form h2 {
+        color: #1e293b;
+        font-size: 28px;
+        margin-bottom: 30px;
+        text-align: center;
+        letter-spacing: -0.5px;
+    }
+
+    /* Paragraph Wrapper for Form Fields */
+    p {
+        margin-bottom: 20px;
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    p:nth-child(2) { animation-delay: 0.1s; }
+    p:nth-child(3) { animation-delay: 0.2s; }
+    p:nth-child(4) { animation-delay: 0.3s; }
+    p:nth-child(5) { animation-delay: 0.4s; }
+    p:nth-child(6) { animation-delay: 0.5s; }
+    p:nth-child(7) { animation-delay: 0.6s; }
+
+    /* Form Labels */
+    label {
+        display: block;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 8px;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Form Inputs and Textareas */
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e5e7eb;
+        border-radius: 10px;
+        font-size: 14px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-sizing: border-box;
+        background: #f9fafb;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    input[type="time"]:focus,
+    select:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #0891b2;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
+        transform: translateY(-1px);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    /* Select Dropdown */
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%231e293b' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 12px center;
+        padding-right: 35px;
+    }
+
+    /* Submit Button */
+    input[type="submit"] {
+        width: 100%;
+        padding: 14px 20px;
+        margin-top: 30px;
+        background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 16px rgba(6, 182, 212, 0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    input[type="submit"]::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.2);
+        transition: left 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 24px rgba(6, 182, 212, 0.4);
+        background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    }
+
+    input[type="submit"]:hover::before {
+        left: 100%;
+    }
+
+    input[type="submit"]:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 12px rgba(6, 182, 212, 0.2);
+    }
+
+    /* Field Groups */
+    .field-group {
+        margin-bottom: 25px;
+    }
+
+    /* Required Field Indicator */
+    .required {
+        color: #dc2626;
+        font-weight: bold;
+    }
+
+    /* Error Messages */
+    .errorlist {
+        list-style: none;
+        padding: 0;
+        margin: 8px 0;
+        color: #dc2626;
+        font-size: 13px;
+    }
+
+    .errorlist li {
+        background: #fee2e2;
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-bottom: 8px;
+        border-left: 3px solid #dc2626;
+    }
+
+    /* Help Text */
+    .helptext {
+        display: block;
+        font-size: 12px;
+        color: #6b7280;
+        margin-top: 6px;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        form {
+            margin: 20px auto;
+            padding: 25px;
+            max-width: 100%;
+        }
+
+        form h2 {
+            font-size: 24px;
+            margin-bottom: 25px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        select,
+        textarea {
+            padding: 10px 12px;
+            font-size: 14px;
+        }
+
+        input[type="submit"] {
+            padding: 12px 16px;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    }
+
+    /* Focus visible for accessibility */
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+        outline: 2px solid #0891b2;
+        outline-offset: 2px;
+    }
+</style>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <input type="submit" value="Create" name="btn">
+
+
+</form>
+
+
+
+{% endblock%}

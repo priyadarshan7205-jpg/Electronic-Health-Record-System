@@ -1,0 +1,65 @@
+{% extends "playout/base.html" %}
+{% block patientblock %}
+<style>
+  .table-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    color: #444;
+    margin-bottom: 20px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background: #4a4a9c;
+    color: white;
+    text-transform: uppercase;
+  }
+  tr:hover {
+    background: #f1f1f9;
+  }
+  .status-pending { color: orange; font-weight: bold; }
+  .status-approved { color: green; font-weight: bold; }
+  .status-rejected { color: red; font-weight: bold; }
+</style>
+
+<div class="table-container">
+  <h2>Your Appointment Status</h2>
+
+  {% if msg %}
+  <table>
+    <tr>
+      <th>Doctor Name</th>
+      <th>Disease</th>
+      <th>Apply Date</th>
+      <th>Time Slot</th>
+      <th>Status</th>
+    </tr>
+    {% for a in msg %}
+    <tr>
+      <td>{{ a.doct_name }}</td>
+      <td>{{ a.p_disease }}</td>
+      <td>{{ a.todaydate }}</td>
+      <td>{{ a.fromTime }} - {{ a.totime }}</td>
+      <td class="status-{{ a.status|lower }}">{{ a.status }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p style="text-align:center; color:#666;">No appointments found.</p>
+  {% endif %}
+</div>
+{% endblock %}

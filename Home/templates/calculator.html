@@ -1,0 +1,15 @@
+<form method="post">
+    {% csrf_token %}
+    Fno <input type="text" name="fno"> <br>
+    SNo <input type="text" name="sno"> <br>
+     <input type="submit" value="ADD" name="btn">
+     <input type="submit" value="SUB" name="btn">
+     <input type="submit" value="MUL" name="btn">
+     <input type="submit" value="DIV" name="btn">
+
+     
+</form>
+{% if res %}
+<h1>Result is {{res}}</h1>
+{% endif %}
+

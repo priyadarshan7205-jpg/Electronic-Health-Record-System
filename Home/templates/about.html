@@ -1,0 +1,95 @@
+{% extends "layout/base.html" %}
+
+{% block homeblock %}
+<div class="container py-5">
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h6 class="text-primary fw-bold text-uppercase tracking-wider mb-3">About Nexus EHR</h6>
+            <h1 class="display-5 fw-bold mb-4" style="color: var(--sidebar-bg);">Revolutionizing Digital Health Connectivity</h1>
+            <p class="lead text-muted mb-4">
+                Nexus EHR is a next-generation Electronic Health Record system designed to bridge the gap between clinical efficiency and patient-centered care. 
+            </p>
+            <div class="d-flex gap-3">
+                <div class="bg-white p-3 rounded-4 shadow-sm border-start border-primary border-4 w-50">
+                    <h5 class="fw-bold mb-1">99.9%</h5>
+                    <p class="small text-muted mb-0">System Uptime</p>
+                </div>
+                <div class="bg-white p-3 rounded-4 shadow-sm border-start border-success border-4 w-50">
+                    <h5 class="fw-bold mb-1">HIPAA</h5>
+                    <p class="small text-muted mb-0">Fully Compliant</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block text-center">
+            <img src="https://media.istockphoto.com/id/2215640392/photo/smart-healthcare-management-using-ehr-software-with-patient-data-visualization-cloud-folders.jpg?s=612x612&w=0&k=20&c=QeUv6u7wg-iewa6uTGboKsGxkf1vx6yw5LoPItxQlvk=" alt="Medical Innovation" style="max-width: 80%; transform: scaleX(1);">
+        </div>
+    </div>
+
+    <!-- Core Values Grid -->
+    <div class="row g-4 mt-4">
+        <div class="col-12 text-center mb-3">
+            <h3 class="fw-bold">Our Core Pillars</h3>
+            <p class="text-muted">Built by clinicians, for clinicians.</p>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm transition-hover">
+                <div class="icon-box bg-primary-light text-primary mb-3" style="width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-shield-lock-fill fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Interoperability</h5>
+                <p class="text-muted small">Seamlessly exchange data with labs, pharmacies, and other hospital systems using FHIR standards.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm transition-hover">
+                <div class="icon-box bg-success-subtle text-success mb-3" style="width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-lightning-charge-fill fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Extreme Speed</h5>
+                <p class="text-muted small">Zero-lag interface optimized for emergency departments where every second counts for the patient.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 p-4 border-0 shadow-sm transition-hover">
+                <div class="icon-box bg-warning-subtle text-warning mb-3" style="width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-person-heart fs-4"></i>
+                </div>
+                <h5 class="fw-bold">Patient Centric</h5>
+                <p class="text-muted small">Empowering patients with secure portals to view history, lab results, and upcoming appointments.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission Footer -->
+    <div class="mt-5 p-5 rounded-5 bg-dark text-white text-center shadow-lg position-relative overflow-hidden">
+        <div class="position-relative z-index-1">
+            <h2 class="fw-bold mb-3">Our Mission</h2>
+            <p class="mx-auto" style="max-width: 700px; opacity: 0.8;">
+                To eliminate clinical burnout through intelligent automation and provide a single source of truth for patient health data worldwide.
+            </p>
+        </div>
+        <!-- Decorative subtle background circle -->
+        <div class="position-absolute bg-primary rounded-circle" style="width: 300px; height: 300px; bottom: -150px; right: -150px; opacity: 0.1;"></div>
+    </div>
+</div>
+
+<style>
+    .transition-hover {
+        transition: all 0.3s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1) !important;
+    }
+    .tracking-wider {
+        letter-spacing: 0.1em;
+    }
+    .bg-primary-light {
+        background-color: rgba(37, 99, 235, 0.1);
+    }
+</style>
+{% endblock %}

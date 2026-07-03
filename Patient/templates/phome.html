@@ -1,0 +1,33 @@
+{% extends "playout/base.html" %}
+{% block patientblock %}
+<style>
+  .welcome-container {
+    max-width: 800px;
+    margin: 60px auto;
+    text-align: center;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  }
+  .welcome-container h1 {
+    font-size: 28px;
+    color: #4a4a9c;
+    margin-bottom: 15px;
+  }
+  .welcome-container p {
+    font-size: 16px;
+    color: #555;
+  }
+  .highlight {
+    color: #2d7d46;
+    font-weight: bold;
+  }
+</style>
+
+<div class="welcome-container">
+  <h1>Welcome to Patient Dashboard</h1>
+  <p>Hello, <span class="highlight">{{ pname }}</span> 👋</p>
+  <p>You can view your <b>appointments, prescriptions, and reports</b here.</p>
+</div>
+{% endblock %}

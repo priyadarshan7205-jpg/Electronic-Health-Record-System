@@ -1,0 +1,311 @@
+{% extends "layout/base.html" %}
+{% block homeblock %}
+{% load static %}
+
+<style>
+    /* Clinical Gallery Styling */
+    .gallery-container {
+        background-color: #f8fafc;
+        min-height: 100vh;
+        padding-bottom: 5rem;
+    }
+
+    .gallery-header {
+        background: white;
+        padding: 3rem 0;
+        border-bottom: 1px solid #e2e8f0;
+        margin-bottom: 3rem;
+    }
+
+    /* 4K Thumbnail Optimization */
+    .img-wrapper {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        background: #000;
+        aspect-ratio: 4/3;
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .img-wrapper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transition: all 0.5s ease;
+    }
+
+    /* Hover Effects for Clinical Review */
+    .img-wrapper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+        border: 2px solid var(--bs-primary);
+    }
+
+    .img-wrapper:hover img {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    /* Diagnostic Overlay */
+    .img-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(15, 23, 42, 0.8));
+        color: white;
+        padding: 15px;
+        font-size: 0.75rem;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .img-wrapper:hover .img-overlay {
+        opacity: 1;
+    }
+
+    .filter-btn {
+        border-radius: 50px;
+        padding: 8px 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        border: 1px solid #e2e8f0;
+        background: white;
+        color: #64748b;
+    }
+
+    .filter-btn.active {
+        background: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+    }
+</style>
+
+<div class="gallery-container">
+    <!-- Header -->
+    <div class="gallery-header shadow-sm">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <h2 class="fw-bold mb-1"><i class="bi bi-images text-primary me-2"></i>Clinical Imaging Vault</h2>
+                    <p class="text-muted mb-0">High-resolution diagnostic records & facility documentation.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <div class="d-flex justify-content-md-end gap-2 overflow-auto pb-2">
+                        <button class="filter-btn active">All Media</button>
+                        <button class="filter-btn">Radiology</button>
+                        <button class="filter-btn">Pathology</button>
+                        <button class="filter-btn">Dermatology</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row g-4">
+            <!-- Medical Gallery with Multiple Image Sources -->
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1512069511692-b82d787265cf?auto=format&fit=crop&w=800&q=80"
+                         alt="Black stethoscope" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-primary">INSTRUMENT</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: STC-001</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573452-9dc8ce8f5cc5?auto=format&fit=crop&w=800&q=80"
+                         alt="Doctor using tablet" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-info">DIGITAL</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: DIG-002</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573215-b59d8ad9970c?auto=format&fit=crop&w=800&q=80"
+                         alt="Person holding tablet" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-success">CONSULT</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: CON-003</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573197-bf6600d15bce?auto=format&fit=crop&w=800&q=80"
+                         alt="Stethoscope over hand" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-warning">CARE</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: CAR-004</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573421-d19e546cfc4e?auto=format&fit=crop&w=800&q=80"
+                         alt="Doctor and patient tablet" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-secondary">REVIEW</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: REV-005</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573699-f1964bcc9ebe?auto=format&fit=crop&w=800&q=80"
+                         alt="Close-up stethoscope" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-danger">SCOPE</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: SCP-006</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1758691462848-ba1e929da259?auto=format&fit=crop&w=800&q=80"
+                         alt="Doctor typing on keyboard" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-primary">DIGITAL</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: DIG-007</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1763070282928-fe1135165d6d?auto=format&fit=crop&w=800&q=80"
+                         alt="Stethoscope on white surface" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-secondary">EQUIP</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: EQP-008</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573590-5815157da865?auto=format&fit=crop&w=800&q=80"
+                         alt="Person holding stethoscope" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-success">CLINIC</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: CLN-009</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573553-6548db92db79?auto=format&fit=crop&w=800&q=80"
+                         alt="Doctor showing patient tablet" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-info">GUIDE</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: GDE-010</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1646913508331-5ef3f22ba677?auto=format&fit=crop&w=800&q=80"
+                         alt="Clipboard medical records" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-warning">RECORDS</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: REC-011</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <div class="img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1666886573212-2de95596d509?auto=format&fit=crop&w=800&q=80"
+                         alt="Healthcare professional working" loading="lazy">
+                    <div class="img-overlay">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="bi bi-calendar3 me-1"></i> May 12, 2026</span>
+                            <span class="badge bg-danger">CLINICAL</span>
+                        </div>
+                        <p class="mb-0 mt-1 fw-bold">Case_Ref: HCP-012</p>
+                    </div>
+                    <a href="#" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load More Section -->
+        <div class="text-center mt-5">
+            <button class="btn btn-outline-primary px-5 py-3 rounded-pill fw-bold shadow-sm">
+                <i class="bi bi-arrow-clockwise me-2"></i> Load More Records
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Simple filter toggle simulation
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            document.querySelector('.filter-btn.active').classList.remove('active');
+            this.classList.add('active');
+        });
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "playout/base.html" %}
+{% block patientblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f9f9f9; padding: 20px; }
+        .report-box { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        ul { list-style: none; padding: 0; }
+        ul li { padding: 8px; border-bottom: 1px solid #eee; }
+        .total { margin-top: 15px; font-weight: bold; font-size: 18px; text-align: right; }
+    </style>
+</head>
+<body>
+  <div class="report-box">
+    <h2>Test Report for {{ report.patient.Name }}</h2>
+    <ul>
+        {% for test in tests %}
+        <li>{{ test.test_name }} - ₹{{ test.test_Price }}</li>
+        {% endfor %}
+    </ul>
+    <div class="total">Total: ₹{{ total_price }}</div>
+    <p><small>Report ID: {{ report.report_id }} | Date: {{ report.created_at }}</small></p>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

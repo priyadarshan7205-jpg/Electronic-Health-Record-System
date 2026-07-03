@@ -1,0 +1,246 @@
+{% extends 'layout/base.html' %}
+{% block homeblock %}
+
+<div class="container py-5">
+    <!-- Search & Header Section -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5 mb-3" style="color: #0f172a;">Knowledge Base</h1>
+        <p class="text-muted fs-5">Everything you need to know about the Nexus EHR platform.</p>
+        <div class="position-relative mx-auto mt-4" style="max-width: 600px;">
+            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-primary"></i>
+            <input type="text" class="form-control form-control-lg ps-5 rounded-pill border-0 shadow-sm" placeholder="Search for a question (e.g., 'HIPAA', 'Password')...">
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Sidebar Navigation (Tabs) -->
+        <div class="col-lg-3">
+            <div class="nav flex-column nav-pills shadow-sm bg-white p-3 rounded-4 sticky-top" style="top: 100px;" id="faq-tabs" role="tablist">
+                <button class="nav-link active text-start mb-2 py-3" data-bs-toggle="pill" data-bs-target="#cat-general"><i class="bi bi-info-circle me-2"></i> General Information</button>
+                <button class="nav-link text-start mb-2 py-3" data-bs-toggle="pill" data-bs-target="#cat-privacy"><i class="bi bi-shield-check me-2"></i> Privacy & Security</button>
+                <button class="nav-link text-start mb-2 py-3" data-bs-toggle="pill" data-bs-target="#cat-clinical"><i class="bi bi-clipboard2-pulse me-2"></i> Clinical Workflow</button>
+                <button class="nav-link text-start mb-2 py-3" data-bs-toggle="pill" data-bs-target="#cat-billing"><i class="bi bi-credit-card me-2"></i> Billing & Insurance</button>
+                
+                <div class="mt-4 p-3 bg-primary-subtle rounded-4">
+                    <h6 class="fw-bold text-primary small mb-2">Emergency Support?</h6>
+                    <p class="x-small text-muted mb-2">24/7 Clinical Hotline:</p>
+                    <a href="tel:+91 7205126778" class="h6 fw-bold text-decoration-none">+91 7205126778</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Content Area -->
+        <div class="col-lg-9">
+            <div class="tab-content" id="faq-tabContent">
+                
+                <!-- CATEGORY: GENERAL (Questions 1-8) -->
+                <div class="tab-pane fade show active" id="cat-general">
+                    <h4 class="fw-bold mb-4">General Information</h4>
+                    <div class="accordion accordion-flush" id="accGeneral">
+                        <!-- Q1-Q8 Loop -->
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q1">1. What is an EHRS?</button></h2>
+                            <div id="q1" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">A digital version of a patient's paper chart available in real-time.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q2">2. Who owns the medical data?</button></h2>
+                            <div id="q2" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Legally, the healthcare provider owns the physical record, but patients have the right to access and control their data.</div></div>
+                        </div>
+                        <!-- ... Add Q3 to Q8 similarly ... -->
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q3">3. How does Nexus differ from legacy systems?</button></h2>
+                            <div id="q3" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">We focus on cloud-native speed, zero-downtime updates, and a modern UI that reduces clinician click-fatigue.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q4">4. Is the system cross-platform?</button></h2>
+                            <div id="q4" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Yes, it works on Windows, macOS, iOS, and Android via any modern web browser.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q5">5. Can I use it offline?</button></h2>
+                            <div id="q5" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Nexus offers a 'Local Cache' mode that allows documentation during internet outages, syncing once connection is restored.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q6">6. Do you offer training for new staff?</button></h2>
+                            <div id="q6" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Yes, we provide on-demand webinars and an interactive 'Nexus Academy' portal.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q7">7. How long are records kept?</button></h2>
+                            <div id="q7" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Records are retained per state law (usually 7-10 years) but can be archived indefinitely in our secure vault.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q8">8. Can patients see their notes in real-time?</button></h2>
+                            <div id="q8" class="accordion-collapse collapse" data-bs-parent="#accGeneral"><div class="accordion-body">Yes, via the 'Patient Portal', notes are available as soon as the provider 'signs' the chart.</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY: PRIVACY (Questions 9-16) -->
+                <div class="tab-pane fade" id="cat-privacy">
+                    <h4 class="fw-bold mb-4">Privacy & Security</h4>
+                    <div class="accordion accordion-flush" id="accPrivacy">
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q9">9. Is the data encrypted?</button></h2>
+                            <div id="q9" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">Yes, using AES-256 for storage and TLS 1.3 for all data transfers.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q10">10. What is Role-Based Access Control (RBAC)?</button></h2>
+                            <div id="q10" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">It ensures a receptionist only sees scheduling data, while a doctor sees medical data.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q11">11. How do you handle data breaches?</button></h2>
+                            <div id="q11" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">We have a 24-hour incident response team and automated lockdowns for suspicious activity.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q12">12. Is Multi-Factor Authentication (MFA) required?</button></h2>
+                            <div id="q12" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">MFA is mandatory for all clinical staff to prevent unauthorized access.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q13">13. Do you sell patient data to third parties?</button></h2>
+                            <div id="q13" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">Absolutely not. We are a software provider, not a data broker.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q14">14. Can I see who accessed my record?</button></h2>
+                            <div id="q14" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">Audit logs track every single view, edit, or download of a patient's file.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q15">15. Where are your servers located?</button></h2>
+                            <div id="q15" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">We use regionally-locked Google Cloud servers to comply with local data residency laws.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q16">16. Is the system SOC2 Type II certified?</button></h2>
+                            <div id="q16" class="accordion-collapse collapse" data-bs-parent="#accPrivacy"><div class="accordion-body">Yes, we undergo annual independent audits to maintain SOC2 compliance.</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY: CLINICAL (Questions 17-24) -->
+                <div class="tab-pane fade" id="cat-clinical">
+                    <h4 class="fw-bold mb-4">Clinical Workflow</h4>
+                    <div class="accordion accordion-flush" id="accClinical">
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q17">17. Can doctors e-prescribe medications?</button></h2>
+                            <div id="q17" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Yes, Nexus integrates directly with major pharmacy networks (Surescripts).</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q18">18. Does it support lab integration?</button></h2>
+                            <div id="q18" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Lab results are automatically pulled into the patient's chart via HL7/FHIR interfaces.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q19">19. Is there a speech-to-text feature?</button></h2>
+                            <div id="q19" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Nexus supports medical dictation tools like Dragon Medical One.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q20">20. How are allergies flagged?</button></h2>
+                            <div id="q20" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Visual red banners and interaction alerts trigger automatically when prescribing.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q21">21. Can I customize my documentation templates?</button></h2>
+                            <div id="q21" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Yes, providers can build 'SmartText' templates to speed up charting.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q22">22. Does it support Telehealth visits?</button></h2>
+                            <div id="q22" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Fully integrated video visits are available directly within the patient encounter.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q23">23. How do I handle referrals?</button></h2>
+                            <div id="q23" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Nexus includes an outbound referral portal to share charts with specialists.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q24">24. Are there pediatric growth charts?</button></h2>
+                            <div id="q24" class="accordion-collapse collapse" data-bs-parent="#accClinical"><div class="accordion-body">Standard WHO/CDC growth charts are automatically generated from vitals data.</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CATEGORY: BILLING (Questions 25-30) -->
+                <div class="tab-pane fade" id="cat-billing">
+                    <h4 class="fw-bold mb-4">Billing & Insurance</h4>
+                    <div class="accordion accordion-flush" id="accBilling">
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q25">25. Does it support ICD-10 and CPT coding?</button></h2>
+                            <div id="q25" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">Yes, we have a built-in search engine for the latest medical codes.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q26">26. Can patients pay their bills online?</button></h2>
+                            <div id="q26" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">Yes, the patient portal integrates with Stripe/PayPal for easy payments.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q27">27. How are insurance claims processed?</button></h2>
+                            <div id="q27" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">Nexus features automated claim scrubbing to reduce denials.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q28">28. Do you support Medicare/Medicaid billing?</button></h2>
+                            <div id="q28" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">Fully supported with automated compliance checks.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q29">29. Can I run financial reports?</button></h2>
+                            <div id="q29" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">Revenue cycle management (RCM) dashboards are built-in.</div></div>
+                        </div>
+                        <div class="accordion-item mb-3 border rounded-4">
+                            <h2 class="accordion-header"><button class="accordion-button collapsed rounded-4" data-bs-toggle="collapse" data-bs-target="#q30">30. Is there help for credentialing?</button></h2>
+                            <div id="q30" class="accordion-collapse collapse" data-bs-parent="#accBilling"><div class="accordion-body">While we don't credential for you, our system stores all provider NPI/DEA data for easy filing.</div></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Support Footer -->
+<div class="bg-white border-top py-5 mt-5">
+    <div class="container text-center">
+        <h3 class="fw-bold mb-4">Didn't find your answer?</h3>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-4">
+                <div class="p-4 border rounded-5 transition-hover">
+                    <i class="bi bi-chat-dots-fill text-primary fs-2 mb-3 d-block"></i>
+                    <h5>Live Chat</h5>
+                    <p class="text-muted small">Chat with a technical specialist in under 2 mins.</p>
+                    <a href="{% url 'live-chat' %}" target="_blank" rel="noopener noreferrer" class="btn btn-outline-primary rounded-pill btn-sm">Start Chat</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 border rounded-5 transition-hover">
+                    <i class="bi bi-envelope-paper-fill text-primary fs-2 mb-3 d-block"></i>
+                    <h5>Email Support</h5>
+                    <p class="text-muted small">Send us your detailed clinical query.</p>
+                    <a href="mailto:anikaray72@gmail.com" class="btn btn-outline-primary rounded-pill btn-sm">Send Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .nav-pills .nav-link {
+        color: #64748b;
+        font-weight: 500;
+        border-radius: 12px;
+        transition: all 0.3s;
+    }
+    .nav-pills .nav-link.active {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+    .accordion-button:not(.collapsed) {
+        background-color: transparent;
+        color: var(--bs-primary);
+        box-shadow: none;
+    }
+    .accordion-button:focus {
+        box-shadow: none;
+    }
+    .transition-hover {
+        transition: all 0.3s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-5px);
+        background-color: #f8fafc;
+        border-color: var(--bs-primary) !important;
+    }
+    .x-small { font-size: 12px; }
+</style>
+
+{% endblock %}
